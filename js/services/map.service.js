@@ -1,5 +1,5 @@
 import { locService } from "./loc.service.js";
-
+import { renderLocs } from "../app.controller.js";
 export const mapService = {
   initMap,
   addMarker,
@@ -24,24 +24,20 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
         lng: mapsMouseEvent.latLng.lng(),
       };
 
-      let locationName = getAdress(pos).then(res => {
-        console.log(res);
-        return res;
+      getAdress(pos).then(locationName => {
+        console.log(locationName);
+        locService.handleNewLoc(
+          locationName,
+          pos.lat,
+          pos.lng,
+          "GOOD",
+          Date.now(),
+          Date.now()
+        );
+
+        // return res;
       });
-      locationName.then(res => {
-        console.log("RES", res);
-        return res;
-      });
-      console.log(locationName);
-      locService.handleNewLoc(
-        locationName,
-        pos.lat,
-        pos.lng,
-        "GOOD",
-        Date.now(),
-        Date.now()
-      );
-      locService.renderLocs();
+      renderLocs();
       const marker = new google.maps.Marker({
         position: pos,
         map: gMap,
@@ -56,7 +52,8 @@ function getAdress(pos) {
       `https://maps.googleapis.com/maps/api/geocode/json?latlng=${pos.lat},${pos.lng}&key=AIzaSyBA7NOmJ_7t6Q-h5Q-LVyCmQ3-CeqtAr_Q`
     )
     .then(res => {
-      return res.data.results[10].formatted_address;
+      console.log("res", res);
+      return res.data.results[6].formatted_address;
     });
 }
 

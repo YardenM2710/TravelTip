@@ -2,6 +2,7 @@ import { locService } from "./services/loc.service.js";
 import { mapService } from "./services/map.service.js";
 
 window.onload = onInit;
+window.onSelectedLoc = onSelectedLoc;
 window.onAddMarker = onAddMarker;
 window.onPanTo = onPanTo;
 window.onGetLocs = onGetLocs;
@@ -14,7 +15,7 @@ function onInit() {
       console.log("Map is ready");
     })
     .catch(() => console.log("Error: cannot init map"));
-  locService.renderLocs();
+  // renderLocations();
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
@@ -23,6 +24,20 @@ function getPosition() {
   return new Promise((resolve, reject) => {
     navigator.geolocation.getCurrentPosition(resolve, reject);
   });
+}
+export const renderLocs = renderLocations;
+function renderLocations() {
+  let locs = locService.getLocs();
+  console.log("locs", locs);
+  var strHtml = "";
+  locs.map(loc => {
+    console.log("LOCATION:", loc);
+    strHtml += `<p onclick="onSelectedLoc(${loc.lat},${loc.lng} )">${loc.name}, weather is good</p>`;
+  });
+  document.querySelector(".location-container").innerHTML = strHtml;
+}
+function onSelectedLoc(lat, lng) {
+  onPanTo(lat, lng);
 }
 
 function onDeleteMap() {}
@@ -51,7 +66,7 @@ function onGetUserPos() {
       console.log("err!!!", err);
     });
 }
-function onPanTo() {
+function onPanTo(lat = 35.6895, lng = 139.6917) {
   console.log("Panning the Map");
-  mapService.panTo(35.6895, 139.6917);
+  mapService.panTo(lat, lng);
 }
