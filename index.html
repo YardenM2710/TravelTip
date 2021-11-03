@@ -13,7 +13,7 @@
         <div class="header">
             <h1>TravelTip</h1>
             <div class="search-bar">
-                <input type="text">
+                <input type="text" placeholder="Search" class="search-input">
                 <button onclick="onSearchLocation()">Go</button>
                 <button onclick="onDeleteLoc()">Delete</button>
             </div>
@@ -35,6 +35,7 @@
     <button onclick="onGetUserPos()" class="btn">Get User Position</button>
     <button onclick="onGetLocs()" class="btn">Get Locations</button>
     <button onclick="onPanTo()" class="btn">Pan Map to Tokyo</button>
+    <button onclick="copyLink()"class="btn">Copy Link</button>
 
     <p>You are at: <span class="user-pos"></span></p>
     <p>Locations: <span class="locs"></span></p>

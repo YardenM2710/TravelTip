@@ -7,6 +7,7 @@ window.onAddMarker = onAddMarker;
 window.onPanTo = onPanTo;
 window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
+window.copyLink = copyLink;
 
 function onInit() {
   mapService
@@ -70,3 +71,12 @@ function onPanTo(lat = 35.6895, lng = 139.6917) {
   console.log("Panning the Map");
   mapService.panTo(lat, lng);
 }
+function copyLink() {
+        var inputc = document.body.appendChild(document.createElement("input"));
+        inputc.value = 'https://github.com/YardenM2710/TravelTip.git';
+        inputc.focus();
+        inputc.select();
+        document.execCommand('copy');
+        inputc.parentNode.removeChild(inputc);
+        alert("URL Copied.");
+    }
