@@ -1,3 +1,5 @@
+import { locService } from "./loc.service.js";
+
 export const mapService = {
   initMap,
   addMarker,
@@ -14,17 +16,48 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
       center: { lat, lng },
       zoom: 15,
     });
-    console.log("Map!", gMap);
 
     gMap.addListener("click", mapsMouseEvent => {
+      console.log("Maps Event", mapsMouseEvent);
       const pos = {
         lat: mapsMouseEvent.latLng.lat(),
         lng: mapsMouseEvent.latLng.lng(),
       };
 
-      console.log("mapsMouseEvent.latLng", pos);
+      let locationName = getAdress(pos).then(res => {
+        console.log(res);
+        return res;
+      });
+      locationName.then(res => {
+        console.log("RES", res);
+        return res;
+      });
+      console.log(locationName);
+      locService.handleNewLoc(
+        locationName,
+        pos.lat,
+        pos.lng,
+        "GOOD",
+        Date.now(),
+        Date.now()
+      );
+      locService.renderLocs();
+      const marker = new google.maps.Marker({
+        position: pos,
+        map: gMap,
+      });
     });
   });
+}
+
+function getAdress(pos) {
+  return axios
+    .get(
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${pos.lat},${pos.lng}&key=AIzaSyBA7NOmJ_7t6Q-h5Q-LVyCmQ3-CeqtAr_Q`
+    )
+    .then(res => {
+      return res.data.results[10].formatted_address;
+    });
 }
 
 function addMarker(loc) {

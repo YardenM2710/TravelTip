@@ -14,7 +14,8 @@
             <h1>TravelTip</h1>
             <div class="search-bar">
                 <input type="text">
-                <button>Go</button>
+                <button onclick="onSearchLocation()">Go</button>
+                <button onclick="onDeleteLoc()">Delete</button>
             </div>
         </div>
     </header>
@@ -37,6 +38,7 @@
     <p>Locations: <span class="locs"></span></p>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="module" src="js/app.controller.js"></script>
 </body>
 
