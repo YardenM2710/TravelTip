@@ -1,6 +1,5 @@
 export const locService = {
   getLocs,
-  renderLocs,
   handleNewLoc,
 };
 
@@ -17,7 +16,8 @@ const locs = [
   },
 ];
 
-function handleNewLoc(name, lat, lng, weather, createAt, updatedAT) {
+function handleNewLoc(name = "Haifa", lat, lng, weather, createAt, updatedAT) {
+  console.log(name);
   const newLocId = locs.length;
   var newLocData = {
     id: newLocId,
@@ -39,19 +39,6 @@ function LoadFromStorage(name) {
   return JSON.parse(localStorage.getItem(name));
 }
 
-function renderLocs() {
-  console.log(locs);
-  var strHtml;
-  locs.map(loc => {
-    strHtml += `<p class="cities" "onclick="setSelectedLoc('${loc.id}')">${loc.name}, weather is good</p>`;
-  });
-  document.querySelector(".location-container").innerHTML = strHtml;
-}
-
 function getLocs() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(locs);
-    }, 2000);
-  });
+  return locs;
 }
