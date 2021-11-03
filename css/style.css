@@ -1,7 +1,16 @@
 .header{
     display: flex;
+    background: linear-gradient(to right, rgb(217, 238, 221) 0%, rgb(248, 210, 226) 50%, rgb(229, 247, 224) 100%);
     justify-content: space-between;
     align-items: center;
+}
+
+h1 {
+    color: linear-gradient(to right, rgb(217, 238, 221) 0%, rgb(248, 210, 226) 50%, rgb(229, 247, 224) 100%);
+    text-shadow: 2px 2px 4px #f5cece;
+    font-size: 3em;
+    margin: 0;
+    text-align: center;
 }
 
 .map-main-container{
@@ -15,17 +24,58 @@
 .map-details-container{
     display: flex;
     flex-direction: column;
-    background-color: rgb(255, 255, 255);
-width: 50%;
+    background-color: rgb(252, 224, 224);
+    width: 50%;
 }
 
 .weather-container{
-    background-color: rgb(195, 247, 247);
+    background-color: rgb(248, 232, 225);
     width: 100%;
     height: 50%;
 }
 .details-container{
-    background-color: rgb(151, 255, 255);
+    background-color: rgb(176, 212, 212);
     width: 100%;
     height: 50%;
+}
+.btn {
+background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%);
+color: #eef5e9;
+border-radius: 8px;
+padding: 8px 8px;
+text-align: center;
+font-size: 12px;
+line-height: 16px;
+-webkit-transition: background 1s ease-out;
+-moz-transition: background 1s ease-out;
+-o-transition: background 1s ease-out;
+transition: background 1s ease-out;
+box-shadow: none;
+cursor: pointer;
+border: none;
+margin-right: 8px;
+align: center;
+}
+
+.btn:hover {
+    background: linear-gradient(to right, rgb(83, 114, 202) 0%, rgb(138, 78, 207) 50%, rgb(107, 95, 218) 100%);;
+
+}
+
+.cities {
+    background: linear-gradient(to right, rgb(236, 233, 211) 0%, rgb(245, 240, 210) 50%, rgb(245, 236, 218) 100%);
+    color: #20251c;
+    border-radius: 8px;
+    padding: 8px 8px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 16px;
+    -webkit-transition: background 1s ease-out;
+    -moz-transition: background 1s ease-out;
+    -o-transition: background 1s ease-out;
+    transition: background 1s ease-out;
+    box-shadow: none;
+    cursor: pointer;
+    border: none;
+    margin-right: 8px;
 }

@@ -43,7 +43,7 @@ function renderLocs() {
   console.log(locs);
   var strHtml;
   locs.map(loc => {
-    strHtml += `<p="onclick="setSelectedLoc('${loc.id}')">${loc.name}, weather is good</p>`;
+    strHtml += `<p class="cities" "onclick="setSelectedLoc('${loc.id}')">${loc.name}, weather is good</p>`;
   });
   document.querySelector(".location-container").innerHTML = strHtml;
 }
